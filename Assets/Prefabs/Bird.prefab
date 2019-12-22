@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeedOffsetX: 20
   minSpeedOffsetX: 8
-  maxSpeedOffsetY: 17
+  maxSpeedOffsetY: 5
   minSpeedOffsetY: 2
   disableThresholdY: 35
   isFlipable: 1
