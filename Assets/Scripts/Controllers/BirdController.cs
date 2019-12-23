@@ -9,19 +9,21 @@ public class BirdController : BaseObjectController
 	{
 		GetComponent<SpriteRenderer>().color = Color.green;
 		GetComponent<SpriteRenderer>().flipY = true;
+		speedOffsetY = -14;
 		speedX = 0;
 		GetComponent<Animator>().enabled = false;
 	}
 
 	protected override void OnEnable()
 	{
+		isFromAbove = ProbabilityUtil.PercentChance(50f);
 		base.OnEnable();
+
 		GetComponent<SpriteRenderer>().color = Color.white;
 		isMakeSound = ProbabilityUtil.PercentChance(20f);
 		GetComponent<Animator>().enabled = true;
 		GetComponent<SpriteRenderer>().flipY = false;
-
-		isFromAbove = ProbabilityUtil.PercentChance(100);
+		
 	}
 
 	private void LateUpdate()

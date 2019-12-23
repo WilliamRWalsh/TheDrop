@@ -883,6 +883,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1516369780011050080, guid: f78c494ac0912194c9240f60f82f2c09, type: 3}
+--- !u!1 &1086627021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1086627023}
+  - component: {fileID: 1086627022}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1086627022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086627021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb6f00ffe1713f49bfb680645b310e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRateDropLow: {fileID: 11400000, guid: 1dd514f1b5441634693ed88b866bdcf0, type: 2}
+  spawnRateDropMedium: {fileID: 11400000, guid: dd6475921ca75554d83606f9427e792a,
+    type: 2}
+  spawnRateDropHigh: {fileID: 11400000, guid: 3d8b4bba987c8d741a040297de3abe02, type: 2}
+  spawnRateCloudLow: {fileID: 11400000, guid: 469f7d736e7572246a9566d4cc8bde22, type: 2}
+  spawnRateCloudMedium: {fileID: 11400000, guid: d42adb2af658618489608e93b3e98f62,
+    type: 2}
+  spawnRateCloudHigh: {fileID: 11400000, guid: 2ea60f93dbf81c74daa7161ac13981be, type: 2}
+  spawnRateBirdLow: {fileID: 11400000, guid: 5aa7be0115bda1a4a94cc01d00c90342, type: 2}
+  spawnRateBirdMedium: {fileID: 11400000, guid: b300efc858642634496c55c9d56a0b57,
+    type: 2}
+  spawnRateBirdHigh: {fileID: 11400000, guid: 8e2c29683ad8d644887b2bd1ce1d6566, type: 2}
+  spawnRateAcidLow: {fileID: 11400000, guid: 4220f88263c56b247937cd7b8d7a9a33, type: 2}
+  spawnRateAcidMedium: {fileID: 11400000, guid: f5fabfb7ce5137d45b5208bf2511058d,
+    type: 2}
+  spawnRateAcidHigh: {fileID: 11400000, guid: 2fa5ded33e9d7ef4dbf39c66039be225, type: 2}
+  spawnRateLighteningLow: {fileID: 11400000, guid: 1f042972d5da67944b1540cfc5927b24,
+    type: 2}
+  spawnRateLighteningMedium: {fileID: 11400000, guid: 14f3f5b47df268c4685b957583aa5b19,
+    type: 2}
+  spawnRateLighteningHigh: {fileID: 11400000, guid: a483601ceb2e296499c021bd96854d35,
+    type: 2}
+  spawnRateUFOLow: {fileID: 11400000, guid: 2f1498ca15a4a3e4d937f0ba03dd5a98, type: 2}
+  spawnRateUFOMedium: {fileID: 11400000, guid: bee008f571c0fdf46915faa20ca36b02, type: 2}
+  spawnRateUFOHigh: {fileID: 11400000, guid: 8f165d13542dbec4983a00b9bdf3dcd4, type: 2}
+--- !u!4 &1086627023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086627021}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.089626, y: 5.021677, z: 117.06401}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1162401737
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,12 +1044,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7152ddad38ac8f0458252a311933f654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloudCreateTimer: 0
-  dropCreateTimer: 0
-  acidDropCreateTimer: 0
-  birdCreateTimer: 4
-  UFOCreateTimer: 10
-  lightningCreateTimer: 1
+  cloudGenerateTimer: 0
+  dropGenerateTimer: 0
+  acidDropGenerateTimer: 0
+  birdGenerateTimer: 0
+  UFOGenerateTimer: 10
+  lightningGenerateTimer: 1
 --- !u!1 &1497021160
 GameObject:
   m_ObjectHideFlags: 0

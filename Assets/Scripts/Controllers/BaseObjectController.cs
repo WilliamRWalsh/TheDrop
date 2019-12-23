@@ -72,8 +72,7 @@ public class BaseObjectController : MonoBehaviour
 
 	private void FlipObject()
 	{
-		System.Random rnd = new System.Random();
-		if (rnd.NextDouble() >= 0.5)
+		if (ProbabilityUtil.PercentChance(50))
 		{
 			transform.rotation = Quaternion.Euler(0, 180f, 0);
 			isFlipped = true;

@@ -17,6 +17,8 @@ public class GameStateManager : MonoBehaviour
 
 	public static event Action<int> OnScoreUpdate = delegate { };
 	public static event Action OnEndGame = delegate { };
+	public static event Action OnStartGame = delegate { };
+
 
 	private float scoreUpdatedAt;
 	private bool isInGame = false;
@@ -75,6 +77,7 @@ public class GameStateManager : MonoBehaviour
 		timer = 0;
 		isInGame = true;
 		player.gameObject.SetActive(true);
+		OnStartGame();
 	}
 
 	private void EndGame()

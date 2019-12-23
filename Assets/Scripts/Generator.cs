@@ -4,106 +4,198 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour {
 
+
+	/* Spawned Object Params */
+	#region Object Params
+	private bool isGeneratingClouds;
+	private SpawnRateData cloudSpawnRate;
+
+	private bool isGeneratingDrops;
+	private SpawnRateData dropSpawnRate;
+
+	private bool isGeneratingBirds;
+	private SpawnRateData birdSpawnRate;
+
+	private bool isGeneratingLightening;
+	private SpawnRateData lighteningSpawnRate;
+
+	private bool isGeneratingUFOs;
+	private SpawnRateData ufoSpawnRate;
+
+	private bool isGeneratingAcidDrops;
+	private SpawnRateData acidDropSpawnRate;
+	#endregion
+
+
+	/* Spawn Rates */
 	[SerializeField]
-	private float cloudCreateTimer = 0;
+	private float cloudGenerateTimer = 0;
 	[SerializeField]
-	private float dropCreateTimer = 0;
+	private float dropGenerateTimer = 0;
 	[SerializeField]
-	private float acidDropCreateTimer = 0;
+	private float acidDropGenerateTimer = 3;
 	[SerializeField]
-	private float birdCreateTimer = 0;
+	private float birdGenerateTimer = 0;
 	[SerializeField]
-	private float UFOCreateTimer = 10;
+	private float UFOGenerateTimer = 4;
 	[SerializeField]
-	private float lightningCreateTimer = 1;
+	private float lightningGenerateTimer = 0;
+
+	private static Generator _instance;
+
+	public static Generator Instance { get { return _instance; } }
+
+	private void Awake()
+	{
+		if (_instance != null && _instance != this)
+		{
+			Destroy(this.gameObject);
+		}
+		else
+		{
+			_instance = this;
+		}
+	}
 
 	private void Update()
 	{
-		MakeClouds();
-		MakeDrops();
-		MakeBirds();
-		MakeUFOs();
-		MakeLightning();
-		MakeAcidDrops();
+		Generate();
 	}
 
-	private void MakeDrops()
+	private void Generate()
 	{
-		if (dropCreateTimer <= 0)
+		if (isGeneratingClouds)
+			GenerateClouds();
+		if (isGeneratingDrops)
+			GenerateDrops();
+		if (isGeneratingBirds)
+			GenerateBirds();
+		if (isGeneratingUFOs)
+			GenerateUFOs();
+		if (isGeneratingLightening)
+			GenerateLightening();
+		if (isGeneratingAcidDrops)
+			GenerateAcidDrops();
+	}
+
+
+	#region Set Params
+	public void SetDropParams(bool isEnabled, SpawnRateData spawnRateData)
+	{
+		isGeneratingDrops = isEnabled;
+		dropSpawnRate = spawnRateData;
+	}
+
+	public void SetCloudParams(bool isEnabled, SpawnRateData spawnRateData)
+	{
+		isGeneratingClouds = isEnabled;
+		cloudSpawnRate = spawnRateData;
+	}
+
+	public void SeBirdParams(bool isEnabled, SpawnRateData spawnRateData)
+	{
+		isGeneratingBirds = isEnabled;
+		birdSpawnRate = spawnRateData;
+	}
+
+	public void SetAcidDropParams(bool isEnabled, SpawnRateData spawnRateData)
+	{
+		isGeneratingAcidDrops = isEnabled;
+		acidDropSpawnRate = spawnRateData;
+	}
+
+	public void SetLighteningParams(bool isEnabled, SpawnRateData spawnRateData)
+	{
+		isGeneratingLightening = isEnabled;
+		lighteningSpawnRate = spawnRateData;
+	}
+
+	public void SetUFOParams(bool isEnabled, SpawnRateData spawnRateData)
+	{
+		isGeneratingUFOs = isEnabled;
+		ufoSpawnRate = spawnRateData;
+	}
+	#endregion
+
+	#region Generate Objects
+	private void GenerateDrops() // (0.5f, 2f)
+	{
+		
+		if (dropGenerateTimer <= 0)
 		{
-			dropCreateTimer = Random.Range(0.5f, 2f); // TODO: pull these out to serialized fields
+			dropGenerateTimer = Random.Range(dropSpawnRate.MinTimeBetween, dropSpawnRate.MaxTimeBetween);
 
 			/* Get droplet from pool and set to active */
 			DropletPool.Instance.Get().gameObject.SetActive(true);
 		}
 
-		dropCreateTimer -= Time.deltaTime;
+		dropGenerateTimer -= Time.deltaTime;
 	}
 
-	//TODO: Random sprites, random size, random z value
-	private void MakeClouds()
+	private void GenerateClouds() // (3f, 6f)
 	{
-		if (cloudCreateTimer <= 0)
+		if (cloudGenerateTimer <= 0)
 		{
-			cloudCreateTimer = Random.Range(3f, 6f);  // TODO: pull these out to serialized fields
+			cloudGenerateTimer = Random.Range(cloudSpawnRate.MinTimeBetween, cloudSpawnRate.MaxTimeBetween);
 
 			/* Get cloud from pool and set to active */
 			CloudPool.Instance.Get().gameObject.SetActive(true);
 		}
 
-		cloudCreateTimer -= Time.deltaTime;
+		cloudGenerateTimer -= Time.deltaTime;
 	}
 
-	private void MakeBirds()
+	private void GenerateBirds() // (1.5f, 4f)
 	{
-		if (birdCreateTimer <= 0)
+		if (birdGenerateTimer <= 0)
 		{
-			birdCreateTimer = Random.Range(1.5f, 4f);  // TODO: pull these out to serialized fields
+			birdGenerateTimer = Random.Range(birdSpawnRate.MinTimeBetween, birdSpawnRate.MaxTimeBetween);
 
 			/* Get bird from pool and set to active */
 			BirdPool.Instance.Get().gameObject.SetActive(true);
 		}
 
-		birdCreateTimer -= Time.deltaTime;
+		birdGenerateTimer -= Time.deltaTime;
 	}
 
-	private void MakeUFOs()
+	private void GenerateUFOs() // (5, 10)
 	{
-		if (UFOCreateTimer <= 0)
+		if (UFOGenerateTimer <= 0)
 		{
-			UFOCreateTimer = Random.Range(5, 10);  // TODO: pull these out to serialized fields
+			UFOGenerateTimer = Random.Range(ufoSpawnRate.MinTimeBetween, ufoSpawnRate.MaxTimeBetween);  // TODO: pull these out to serialized fields
 
 			/* Get bird from pool and set to active */
 			UFOPool.Instance.Get().gameObject.SetActive(true);
 		}
 
-		UFOCreateTimer -= Time.deltaTime;
+		UFOGenerateTimer -= Time.deltaTime;
 	}
 
-	private void MakeLightning()
+	private void GenerateLightening() // (5, 5)
 	{
-		if (lightningCreateTimer <= 0)
+		if (lightningGenerateTimer <= 0)
 		{
-			lightningCreateTimer = Random.Range(5, 5);  // TODO: pull these out to serialized fields
+			lightningGenerateTimer = Random.Range(lighteningSpawnRate.MinTimeBetween, lighteningSpawnRate.MaxTimeBetween);  // TODO: pull these out to serialized fields
 
 			/* Get bird from pool and set to active */
 			LightningPool.Instance.Get().gameObject.SetActive(true);
 		}
 
-		lightningCreateTimer -= Time.deltaTime;
+		lightningGenerateTimer -= Time.deltaTime;
 	}
 
-	private void MakeAcidDrops()
+	private void GenerateAcidDrops() // (2f, 3f)
 	{
-		if (acidDropCreateTimer <= 0)
+		if (acidDropGenerateTimer <= 0)
 		{
-			acidDropCreateTimer = Random.Range(2f, 3f); // TODO: pull these out to serialized fields
+			acidDropGenerateTimer = Random.Range(acidDropSpawnRate.MinTimeBetween, acidDropSpawnRate.MaxTimeBetween); // TODO: pull these out to serialized fields
 
 			/* Get droplet from pool and set to active */
 			AcidDropletPool.Instance.Get().gameObject.SetActive(true);
 		}
 
-		acidDropCreateTimer -= Time.deltaTime;
+		acidDropGenerateTimer -= Time.deltaTime;
 	}
+	#endregion
 }
 
