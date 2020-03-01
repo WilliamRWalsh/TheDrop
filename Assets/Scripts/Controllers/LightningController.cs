@@ -35,7 +35,6 @@ public class LightningController : BaseObjectController
 	private void SetAlpha(float alpha)
 	{
 		struck = true;
-		Debug.Log(alpha);
 		Color color = GetComponent<SpriteRenderer>().color;
 		color.a = alpha;
 		GetComponent<SpriteRenderer>().color = color;

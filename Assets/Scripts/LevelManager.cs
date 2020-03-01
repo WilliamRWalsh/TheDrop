@@ -4,52 +4,21 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-
-	#region SpawnRateData
-	[SerializeField]
-	private SpawnRateData spawnRateDropLow;
-	[SerializeField]
-	private SpawnRateData spawnRateDropMedium;
-	[SerializeField]
-	private SpawnRateData spawnRateDropHigh;
+	public float fallSpeed { get; private set; }
 
 	[SerializeField]
-	private SpawnRateData spawnRateCloudLow;
-	[SerializeField]
-	private SpawnRateData spawnRateCloudMedium;
-	[SerializeField]
-	private SpawnRateData spawnRateCloudHigh;
+	private PlayerController playerController;
 
 	[SerializeField]
-	private SpawnRateData spawnRateBirdLow;
+	private WallController cloudWallController;
 	[SerializeField]
-	private SpawnRateData spawnRateBirdMedium;
-	[SerializeField]
-	private SpawnRateData spawnRateBirdHigh;
+	private MenuCloudController menuCloudController;
 
 	[SerializeField]
-	private SpawnRateData spawnRateAcidLow;
-	[SerializeField]
-	private SpawnRateData spawnRateAcidMedium;
-	[SerializeField]
-	private SpawnRateData spawnRateAcidHigh;
+	private Generator generator;
 
 	[SerializeField]
-	private SpawnRateData spawnRateLighteningLow;
-	[SerializeField]
-	private SpawnRateData spawnRateLighteningMedium;
-	[SerializeField]
-	private SpawnRateData spawnRateLighteningHigh;
-
-	[SerializeField]
-	private SpawnRateData spawnRateUFOLow;
-	[SerializeField]
-	private SpawnRateData spawnRateUFOMedium;
-	[SerializeField]
-	private SpawnRateData spawnRateUFOHigh;
-	#endregion
-
-	private bool generatorToggle = false;
+	private SpawnRateData start_0;
 
 	private static LevelManager _instance;
 
@@ -67,88 +36,40 @@ public class LevelManager : MonoBehaviour
 		}
 
 		/* Listeners */
-		GameStateManager.OnStartGame += OnStartGame;
+		StartBtn.OnStart += StartGame;
+		RestartBtn.OnRestart += RestartGame;
+		MenuCloudController.OnStartReady += StartReadyEvent;
+		fallSpeed = -15;
 	}
 
-	private void FixedUpdate()
+	void Update()
 	{
-		UpdateGenerator();
+		UpdateGeneratorSpawnRateData(start_0);
 	}
 
-	/* This is a really bad way to change the level based off time */
-	private void UpdateGenerator()
+	#region Event Handlers
+	private void RestartGame()
 	{
-
-		/* I hate this */
-		if (!generatorToggle && GameStateManager.Instance.timer < 5f)
-		{
-			/* Drops (LOW) - Clouds (LOW) */
-			Generator.Instance.SetDropParams(true, spawnRateDropLow);
-			Generator.Instance.SetCloudParams(true, spawnRateCloudLow);
-
-			generatorToggle = true;
-		} else if (generatorToggle && GameStateManager.Instance.timer > 5f && GameStateManager.Instance.timer < 10f)
-		{
-			/* Birds (LOW) */
-			Generator.Instance.SeBirdParams(true, spawnRateBirdLow);
-
-			generatorToggle = false;
-		} else if (!generatorToggle && GameStateManager.Instance.timer > 10f && GameStateManager.Instance.timer < 15f)
-		{
-			Generator.Instance.SetCloudParams(true, spawnRateCloudMedium);
-
-			generatorToggle = true;
-		} else if (generatorToggle && GameStateManager.Instance.timer > 15f && GameStateManager.Instance.timer < 20f)
-		{
-			/* Drops (Meddium) - Lightening (LOW) */
-			Debug.Log("Light");
-			Generator.Instance.SetDropParams(true, spawnRateDropMedium);
-			Generator.Instance.SetLighteningParams(true, spawnRateLighteningLow);
-
-			generatorToggle = false;
-		} else if (!generatorToggle && GameStateManager.Instance.timer > 20f && GameStateManager.Instance.timer < 25f)
-		{
-			/* Birds (Medium) */
-			Generator.Instance.SeBirdParams(true, spawnRateBirdMedium);
-			Generator.Instance.SetAcidDropParams(true, spawnRateAcidLow);
-
-			generatorToggle = true;
-		}
-		else if (generatorToggle && GameStateManager.Instance.timer > 25f && GameStateManager.Instance.timer < 30f)
-		{
-			/* UFOs (Low) */
-			Generator.Instance.SetUFOParams(true, spawnRateUFOLow);
-			Generator.Instance.SetLighteningParams(true, spawnRateLighteningMedium);
-			
-			generatorToggle = false;
-		}
-		else if (!generatorToggle && GameStateManager.Instance.timer > 30f && GameStateManager.Instance.timer < 35f)
-		{
-			/* UFOs (Low) */
-			Generator.Instance.SeBirdParams(true, spawnRateBirdHigh);
-			Generator.Instance.SetAcidDropParams(true, spawnRateAcidMedium);
-
-			generatorToggle = true;
-		}
-		else if (generatorToggle && GameStateManager.Instance.timer > 30f && GameStateManager.Instance.timer < 35f)
-		{
-			/* UFOs (Low) */
-			Generator.Instance.SetUFOParams(true, spawnRateUFOMedium);
-			Generator.Instance.SetCloudParams(true, spawnRateCloudHigh);
-
-			generatorToggle = false;
-		}
-
-
+		fallSpeed = -25;
+		cloudWallController.gameObject.SetActive(true);
+		menuCloudController.gameObject.SetActive(true);
 	}
 
-	private void OnStartGame()
+	private void StartGame()
 	{
-		Generator.Instance.SetDropParams(true, spawnRateDropLow);
-		Generator.Instance.SetCloudParams(true, spawnRateCloudLow);
-		Generator.Instance.SetAcidDropParams(false, null);
-		Generator.Instance.SetLighteningParams(false, null);
-		Generator.Instance.SetUFOParams(false, null);
+		fallSpeed = 10;
+		playerController.gameObject.SetActive(true);
 	}
+
+	private void StartReadyEvent()
+	{
+		fallSpeed = -15;
+	}
+	#endregion
+	#region Generator Updates
+	private void UpdateGeneratorSpawnRateData(SpawnRateData spawnRateData){
+		generator.SetSpawnRateData(spawnRateData);
+	}
+	#endregion
 }
 

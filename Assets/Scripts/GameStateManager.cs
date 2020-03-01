@@ -3,6 +3,89 @@ using System;
 
 public class GameStateManager : MonoBehaviour
 {
+	/* Public Vars */
+
+	/* Events to send */
+	public static event Action<int> OnScoreUpdate = delegate { };
+	public static event Action OnMenu = delegate { };
+	public static event Action OnEndGame = delegate { };
+	public static event Action OnStartGame = delegate { };
+
+	/* Private Vars */
+	private enum State
+	{
+		Menu,
+		InGame,
+		Paused,
+		EndGame,
+	}
+	private int state = (int)State.Menu;
+
+	private void Awake()
+	{
+		/* Listening for these events */
+		//StartBtn.OnStart += ToStartGameState;
+		PlayerController.OnDeath += ToEndGameState;
+		RestartBtn.OnRestart += ToMenuState;
+
+		//PauseBtn.OnStart += StartGame;
+
+	}
+
+	private void Update()
+	{
+		StateMachine();
+	}
+
+	private void StateMachine()
+	{
+		switch (state)
+		{
+			case (int)State.Menu:
+
+				break;
+			case (int)State.InGame:
+
+				break;
+			case (int)State.Paused:
+
+				break;
+			case (int)State.EndGame:
+
+				break;
+
+		}
+	}
+
+	/* State Changing Events */
+	private void ToMenuState()
+	{
+		state = (int)State.Menu;
+	}
+
+	private void ToStartGameState()
+	{
+		state = (int)State.InGame;
+	}
+
+	private void ToEndGameState()
+	{
+		state = (int)State.EndGame;
+	}
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /*
 	private static GameStateManager _instance;
 
 	public static GameStateManager Instance { get { return _instance; } }
@@ -56,7 +139,7 @@ public class GameStateManager : MonoBehaviour
 	private void InGame()
 	{
 		timer += Time.deltaTime;
-		/* There has to be a better way to determine when to update the score */
+
 		if (Mathf.FloorToInt(timer) - Mathf.FloorToInt(scoreUpdatedAt) > 0)
 			UpdateScore();
 	}

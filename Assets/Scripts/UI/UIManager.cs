@@ -7,12 +7,19 @@ public class UIManager : MonoBehaviour
 
 	private void Awake()
 	{
-		GameStateManager.OnEndGame += ShowRestart;
+		PlayerController.OnDeath += OnDeathEvent;
+		// RestartBtn.OnRestart += RestartGameEvent;
+		MenuCloudController.OnStartReady += StartReadyEvent;
 	}
 
-	private void ShowRestart()
+	private void OnDeathEvent()
 	{
 		GetComponentInChildren<RestartBtn>(true).gameObject.SetActive(true);
-		
 	}
+
+	private void StartReadyEvent()
+	{
+		GetComponentInChildren<StartBtn>(true).gameObject.SetActive(true);
+	}
+
 }

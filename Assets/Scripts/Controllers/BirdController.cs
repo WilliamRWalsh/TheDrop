@@ -66,10 +66,11 @@ public class BirdController : BaseObjectController
 		float deltaY = targetPosition.y - this.transform.position.y;
 		float deltaX = targetPosition.x - this.transform.position.x;
 		float m = deltaY / deltaX;
-
-		speedX = (GameStateManager.Instance.fallSpeed + speedOffsetY) / m;
+		// TODO: This could be in the level manager (if singleton -- LevelManager.Instance.fallSpeed)
+		float baseMoveSpeed = LevelManager.Instance.fallSpeed;
+		speedX = (baseMoveSpeed + speedOffsetY) / m;
 		if (isFromAbove)
-			speedX = (GameStateManager.Instance.fallSpeed + speedOffsetY - 16) / m;
+			speedX = (baseMoveSpeed + speedOffsetY - 16) / m;
 
 		if (isFlipped)
 			speedX *= -1;
@@ -77,8 +78,10 @@ public class BirdController : BaseObjectController
 
 	protected override void Move()
 	{
+		// TODO: This could be in the level manager (if singleton -- LevelManager.Instance.fallSpeed)
+		float baseMoveSpeed = LevelManager.Instance.fallSpeed;
 		if (isFromAbove) { 
-			transform.Translate(speedX * Time.deltaTime, (GameStateManager.Instance.fallSpeed + speedOffsetY - 16) * Time.deltaTime, 0);
+			transform.Translate(speedX * Time.deltaTime, (baseMoveSpeed + speedOffsetY - 16) * Time.deltaTime, 0);
 		} else
 		{
 			base.Move();

@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
 	private bool isAcid = false;
 	private float acidCountDown = 0;
 
+	void OnEnable()
+	{
+		transform.position = new Vector2(0,0);
+	}
+
 	private void Start()
 	{
 		SetScale();
@@ -57,6 +62,7 @@ public class PlayerController : MonoBehaviour
 
 	private void CheckTilt()
 	{
+		transform.Translate(Input.GetAxis("Horizontal"),0,0);
 		transform.Translate(Input.acceleration.x, 0, 0);
 		KeepPlayerInsideCameraView();
 	}
@@ -99,7 +105,7 @@ public class PlayerController : MonoBehaviour
 			EnemyHit();
 
 		AcidDropletController acidDropletController = collision.GetComponent<AcidDropletController>();
-		if (acidDropletController != null) // TODO: Get rid of acidDroplet prefab by using only droplets with bool for acid
+		if (acidDropletController != null)
 			SuckUpAcidDroplet(acidDropletController);
 	}
 

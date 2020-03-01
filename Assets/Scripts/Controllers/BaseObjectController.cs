@@ -16,8 +16,7 @@ public class BaseObjectController : MonoBehaviour
 	[SerializeField]
 	internal float minSpeedOffsetY;
 
-	[SerializeField]
-	internal float disableThresholdY;
+	internal float disableThresholdY = 75;
 
 	internal float speedOffsetY;
 
@@ -47,7 +46,9 @@ public class BaseObjectController : MonoBehaviour
 
 	protected virtual void Move()
 	{
-		transform.Translate(speedX * Time.deltaTime, (GameStateManager.Instance.fallSpeed + speedOffsetY) * Time.deltaTime, 0);
+		// TODO: This could be in the level manager (if singleton -- LevelManager.Instance.fallSpeed)
+		float baseMoveSpeed = LevelManager.Instance.fallSpeed;
+		transform.Translate(speedX * Time.deltaTime, (baseMoveSpeed + speedOffsetY) * Time.deltaTime, 0);
 	}
 
 	/* This method will be overwritten for any object that doesn't start below the camera */
@@ -83,4 +84,5 @@ public class BaseObjectController : MonoBehaviour
 			isFlipped = false;
 		}
 	}
+
 }
