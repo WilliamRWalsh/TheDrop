@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f52b89b7f26df5941b2cf943f12fdaa4, type: 3}
-  m_Name: Start_0
+  m_Name: thunder_storm
   m_EditorClassIdentifier: 
-  isDropletsOverrided: 1
-  isDropletsEnabled: 1
-  isDropletsFromAbove: 1
-  dropletsMinTimeBetween: 0.75
-  dropletsMaxTimeBetween: 1.25
-  isAcidDropletsOverrided: 1
+  isDropletsOverrided: 0
+  isDropletsEnabled: 0
+  isDropletsFromAbove: 0
+  dropletsMinTimeBetween: 0
+  dropletsMaxTimeBetween: 0
+  isAcidDropletsOverrided: 0
   isAcidDropletsEnabled: 0
-  isAcidDropletsMinTimeBetween: 0
-  isAcidDropletsMaxTimeBetween: 0
-  isCloudsOverrided: 1
+  acidDropletsMinTimeBetween: 0
+  acidDropletsMaxTimeBetween: 0
+  isCloudsOverrided: 0
   isCloudsEnabled: 0
   cloudsMinTimeBetween: 0
   cloudsMaxTimeBetween: 0
-  isBirdsOverrided: 1
+  isBirdsOverrided: 0
   isBirdsEnabled: 0
   birdsMinTimeBetween: 0
   birdsMaxTimeBetween: 0
   isLighteningOverrided: 1
-  isLighteningEnabled: 0
-  lighteningMinTimeBetween: 0
-  lighteningMaxTimeBetween: 0
-  isUFOsOverrided: 1
+  isLighteningEnabled: 1
+  lighteningMinTimeBetween: 2
+  lighteningMaxTimeBetween: 4
+  isUFOsOverrided: 0
   isUFOsEnabled: 0
   UFOsMinTimeBetween: 0
   UFOsMaxTimeBetween: 0

@@ -2719,7 +2719,14 @@ MonoBehaviour:
   cloudWallController: {fileID: 1240865385}
   menuCloudController: {fileID: 82776718}
   generator: {fileID: 1293673078}
-  start_0: {fileID: 11400000, guid: b14c5628c859f2b41a5ddafd8ed12917, type: 2}
+  menu_rain: {fileID: 11400000, guid: b14c5628c859f2b41a5ddafd8ed12917, type: 2}
+  start_game: {fileID: 11400000, guid: a767212eb964b50458413d475520cdd1, type: 2}
+  add_acid_rain: {fileID: 11400000, guid: 0aaa1a15e2fcced4ab7b1c76659f7dc4, type: 2}
+  basic_1: {fileID: 11400000, guid: da604be5b51301b4787c87fec69bf818, type: 2}
+  flock_of_birds: {fileID: 11400000, guid: f2a7b7cac91197949ba9788dcd65eaba, type: 2}
+  heavy_rain: {fileID: 11400000, guid: 2c710eede0cffff4f836fb08e0ff61f5, type: 2}
+  thunder_storm: {fileID: 11400000, guid: c2e063bdb39d9454dbcdb9f71e96aaf0, type: 2}
+  ufo_invasion: {fileID: 11400000, guid: 89bb17ac5adbb624889e9e43dd58c6f0, type: 2}
 --- !u!4 &1086627023
 Transform:
   m_ObjectHideFlags: 0

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52b89b7f26df5941b2cf943f12fdaa4, type: 3}
+  m_Name: add_acid_rain
+  m_EditorClassIdentifier: 
+  isDropletsOverrided: 0
+  isDropletsEnabled: 0
+  isDropletsFromAbove: 0
+  dropletsMinTimeBetween: 0
+  dropletsMaxTimeBetween: 0
+  isAcidDropletsOverrided: 1
+  isAcidDropletsEnabled: 1
+  acidDropletsMinTimeBetween: 10
+  acidDropletsMaxTimeBetween: 20
+  isCloudsOverrided: 0
+  isCloudsEnabled: 0
+  cloudsMinTimeBetween: 0
+  cloudsMaxTimeBetween: 0
+  isBirdsOverrided: 0
+  isBirdsEnabled: 0
+  birdsMinTimeBetween: 0
+  birdsMaxTimeBetween: 0
+  isLighteningOverrided: 0
+  isLighteningEnabled: 0
+  lighteningMinTimeBetween: 0
+  lighteningMaxTimeBetween: 0
+  isUFOsOverrided: 0
+  isUFOsEnabled: 0
+  UFOsMinTimeBetween: 0
+  UFOsMaxTimeBetween: 0

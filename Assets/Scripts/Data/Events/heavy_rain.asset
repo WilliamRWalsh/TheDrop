@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f52b89b7f26df5941b2cf943f12fdaa4, type: 3}
-  m_Name: Start_1
+  m_Name: heavy_rain
   m_EditorClassIdentifier: 
   isDropletsOverrided: 1
   isDropletsEnabled: 1
-  isDropletsFromAbove: 1
-  dropletsMinTimeBetween: 0.75
-  dropletsMaxTimeBetween: 1.25
+  isDropletsFromAbove: 0
+  dropletsMinTimeBetween: 0.25
+  dropletsMaxTimeBetween: 0.5
   isAcidDropletsOverrided: 0
   isAcidDropletsEnabled: 0
-  isAcidDropletsMinTimeBetween: 0
-  isAcidDropletsMaxTimeBetween: 0
-  isCloudsOverrided: 1
-  isCloudsEnabled: 1
-  cloudsMinTimeBetween: 3
-  cloudsMaxTimeBetween: 5
-  isBirdsOverrided: 1
-  isBirdsEnabled: 1
-  birdsMinTimeBetween: 1
-  birdsMaxTimeBetween: 2
+  acidDropletsMinTimeBetween: 0
+  acidDropletsMaxTimeBetween: 0
+  isCloudsOverrided: 0
+  isCloudsEnabled: 0
+  cloudsMinTimeBetween: 0
+  cloudsMaxTimeBetween: 0
+  isBirdsOverrided: 0
+  isBirdsEnabled: 0
+  birdsMinTimeBetween: 0
+  birdsMaxTimeBetween: 0
   isLighteningOverrided: 0
   isLighteningEnabled: 0
   lighteningMinTimeBetween: 0
